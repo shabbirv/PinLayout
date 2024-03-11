@@ -19,7 +19,7 @@
 
 import Foundation
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 #else
 import AppKit
@@ -158,7 +158,7 @@ import AppKit
     //
     // MARK: Layout using relative positioning
     //
-    #if os(iOS) || os(tvOS)
+    #if os(iOS) || os(tvOS) || os(visionOS)
         typealias POView = (_ view: UIView) -> PinLayoutObjC?
         typealias POViews = (_ views: [UIView]) -> PinLayoutObjC?
         typealias POViewHAligned = (_ view: UIView, _ aligned: HorizontalAlign) -> PinLayoutObjC?

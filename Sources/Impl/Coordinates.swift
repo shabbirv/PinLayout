@@ -17,7 +17,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 #else
 import AppKit
@@ -107,12 +107,16 @@ final class Coordinates<PinView: Layoutable> {
 }
 
 private func getDisplayScale() -> CGFloat {
-    #if os(iOS) || os(tvOS)
-    if #available(iOS 13.0, tvOS 13.0, *) {
+    #if os(iOS) || os(tvOS) || os(visionOS)
+      #if os(visionOS)
         return max(UITraitCollection.current.displayScale, 1)
-    } else {
-        return UIScreen.main.scale
-    }
+      #else
+      if #available(iOS 13.0, tvOS 13.0, *) {
+          return max(UITraitCollection.current.displayScale, 1)
+      } else {
+          return UIScreen.main.scale
+      }
+      #endif
     #elseif os(OSX)
         #if swift(>=4.1)
         return NSScreen.main?.backingScaleFactor ?? 2.0

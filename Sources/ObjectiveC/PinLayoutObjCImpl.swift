@@ -17,13 +17,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 #else
 import AppKit
 #endif
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 @objc extension UIView {
     public var anchor: AnchorList {
         return AnchorListImpl(view: self)
@@ -46,7 +46,7 @@ import AppKit
 #endif
 
 @objc class PinLayoutObjCImpl: NSObject, PinLayoutObjC {
-    #if os(iOS) || os(tvOS)
+    #if os(iOS) || os(tvOS) || os(visionOS)
     typealias PView = UIView
     #else
     typealias PView = NSView
